@@ -2,14 +2,16 @@ import { Component, signal } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppHeader } from './app/app-header/app-header';
 import { AppFooter } from './app/app-footer/app-footer';
-import { PostViewer } from './app/post-viewer/post-viewer';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import {routes} from '../app.routes'
+import { provideRouter } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [AppHeader, AppFooter, PostViewer],
+  imports: [AppHeader, AppFooter, RouterOutlet],
   template: `
     <app-header></app-header>
-    <app-post-viewer></app-post-viewer>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>
   `,
 })
@@ -18,4 +20,8 @@ export class App {
   counter = signal(0);
 }
 
-bootstrapApplication(App);
+bootstrapApplication(App, {
+  providers: [
+    provideRouter(routes)
+  ]
+}).catch(err => console.error(err));
