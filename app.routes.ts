@@ -7,7 +7,7 @@ import { FavoritesViewer } from './src/app/favorites-viewer/favorites-viewer'
 
 export const routes: Routes = [
   { path: '', component: HomePage }, 
-  { path: 'posts', component: PostViewer },
+  { path: 'post/:id', component: PostViewer },
   { path: 'favorites', component: FavoritesViewer },
   { path: '**', component: PostViewer }
 ];
