@@ -7,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrl: './post-viewer.css',
 })
 export class PostViewer {
+  handleAddToFavorite(){
+    try {
+      let data = localStorage.getItem("favs");
 
+      if(data){
+        window.alert("Data loaded");
+      }
+      else localStorage.setItem("favs", JSON.stringify([]))
+    } catch(err){
+
+    }
+  }
 }
