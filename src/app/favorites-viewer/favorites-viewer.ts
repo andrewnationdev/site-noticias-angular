@@ -7,6 +7,7 @@ import {PostSummary} from "../post-summary/post-summary"
   templateUrl: './favorites-viewer.html',
   styleUrl: './favorites-viewer.css',
 })
+
 export class FavoritesViewer {
   favorites = [
     {
