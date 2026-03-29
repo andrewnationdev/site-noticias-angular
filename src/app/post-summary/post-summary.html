@@ -1,20 +1,23 @@
-<article class="group cursor-pointer border-b border-gray-50 pb-16 last:border-0" onclick="app.openArticle(${article.id})">
-    <div class="flex items-center gap-4 text-[10px] font-sans text-gray-400 mb-4 uppercase tracking-widest">
-        <span class="text-black font-extrabold">Cultura</span>
-        <span>•</span>
-        <span>01 Março, 2026</span>
-        <span>•</span>
-        <span>3 min de leitura</span>
-    </div>
-    <a routerLink="/post/1"><h2 class="text-4xl font-bold leading-tight group-hover:text-amber-900 transition-colors">
-        O Renascimento da Tipografia na Era Digital
-    </h2></a>
-    <p class="mt-6 mb-6 text-gray-500 leading-relaxed text-lg line-clamp-3 font-light">
-        Como o minimalismo visual está ajudando leitores a recuperarem o foco em um mundo saturado de informações e distrações constantes.
-    </p>
-    <a 
-        routerLink="/post/1"
-        class="mt-8 text-xs font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
-        Ler matéria completa →
-    </a>
+<article class="group cursor-pointer border-b border-gray-50 pb-16 last:border-0">
+    @if(post){<div>
+        <div class="flex items-center gap-4 text-[10px] font-sans text-gray-400 mb-4 uppercase tracking-widest">
+            <span class="text-black font-extrabold">{{post?.category}}</span>
+            <span>•</span>
+            <span>{{post?.date}}</span>
+            <span>•</span>
+            <span>3 min de leitura</span>
+        </div>
+        <a routerLink="/post/1">
+            <h2 class="text-4xl font-bold leading-tight group-hover:text-amber-900 transition-colors">
+                {{post?.title}}
+            </h2>
+        </a>
+        <p class="mt-6 mb-6 text-gray-500 leading-relaxed text-lg line-clamp-3 font-light">
+            {{post?.excerpt}}
+        </p>
+        <a routerLink="/post/1"
+            class="mt-8 text-xs font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
+            Ler matéria completa →
+        </a>
+    </div>}
 </article>

@@ -4,6 +4,7 @@ import {PostSummary} from "../post-summary/post-summary"
 @Component({
   selector: 'app-favorites-viewer',
   imports: [PostSummary],
+  standalone: true,
   templateUrl: './favorites-viewer.html',
   styleUrl: './favorites-viewer.css',
 })
