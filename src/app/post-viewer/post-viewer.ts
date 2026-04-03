@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-post-viewer',
@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './post-viewer.css',
 })
 export class PostViewer {
+  @Input() id?:string;
+
   handleAddToFavorite(){
     try {
       let data = localStorage.getItem("favs");
+
+      window.alert(this.id);
 
       if(data){
         window.alert("Data loaded");

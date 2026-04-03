@@ -38,5 +38,9 @@ export class FavoritesViewer {
         author: "Dpto. de Linguística",
         category: "Educação"
     }
-];
+  ];
+
+  saveToFavorites = (post:any) => {
+      
+  }
 }

@@ -9,5 +9,4 @@ export const routes: Routes = [
   { path: '', component: HomePage }, 
   { path: 'post/:id', component: PostViewer },
   { path: 'favorites', component: FavoritesViewer },
-  { path: '**', component: PostViewer }
 ];

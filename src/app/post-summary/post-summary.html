@@ -5,9 +5,9 @@
             <span>•</span>
             <span>{{post?.date}}</span>
             <span>•</span>
-            <span>3 min de leitura</span>
+            <span>{{getReadingTime(post?.content ?? "")}} min de leitura</span>
         </div>
-        <a routerLink="/post/1">
+        <a [routerLink]="['/post', post.id]">
             <h2 class="text-4xl font-bold leading-tight group-hover:text-amber-900 transition-colors">
                 {{post?.title}}
             </h2>
@@ -15,7 +15,7 @@
         <p class="mt-6 mb-6 text-gray-500 leading-relaxed text-lg line-clamp-3 font-light">
             {{post?.excerpt}}
         </p>
-        <a routerLink="/post/1"
+        <a [routerLink]="['/post', post.id]">
             class="mt-8 text-xs font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
             Ler matéria completa →
         </a>
