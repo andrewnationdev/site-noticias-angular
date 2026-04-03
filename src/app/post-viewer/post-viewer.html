@@ -1,45 +1,48 @@
 <div class="max-w-3xl mx-auto px-6 py-16">
   <header class="mb-16" id="article-header">
-    <div
-      class="flex items-center gap-4 text-[10px] font-sans text-amber-800 mb-6 uppercase tracking-[0.3em] font-black">
+    <div class="flex items-center gap-4 text-[10px] font-sans text-amber-800 mb-6 uppercase tracking-[0.3em] font-black">
       {{post?.category}}
     </div>
+
     <h1 class="text-5xl sm:text-6xl font-bold leading-[1.05] mb-10 tracking-tight">
       {{post?.title}}
     </h1>
+
     <div class="flex items-center justify-between border-y border-gray-100 py-8 font-sans text-xs text-gray-500">
       <div class="leading-relaxed">
         Escrito por
         <span class="text-black font-bold uppercase tracking-tighter">{{post?.author}}</span><br />
         Publicado em {{post?.date}}
       </div>
-      <button (click)="handleAddToFavorite(post)" id="btn-fav-article" [class.text-amber-600]="isInFavorites()"
-        class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          [attr.fill]="isInFavorites() ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
-          <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
-        </svg>
-        <span id="label-fav-article">
-          {{ isInFavorites() ? 'Salvo' : 'Salvar' }}
-        </span>
-      </button>
-      <button
-        class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2">
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-          <polyline points="16 6 12 2 8 6" />
-          <line x1="12" x2="12" y1="2" y2="15" />
-        </svg>
-        Compartilhar
-      </button>
-    </div>
-</div>
-</header>
 
-<div class="max-w-none text-[#2a2a2a] leading-[1.8] space-y-8 text-xl font-light" id="article-body">
-  <p class="drop-cap">
-    {{post?.content}}
-  </p>
-</div>
+      <div class="flex gap-6"> <button (click)="handleAddToFavorites(post)" 
+          id="btn-fav-article" 
+          [class.text-amber-600]="isInFavorites(post?.id!)"
+          class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+            [attr.fill]="isInFavorites(post?.id!) ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2">
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+          </svg>
+          <span id="label-fav-article">
+            {{ isInFavorites(post?.id!) ? 'Salvo' : 'Salvar' }}
+          </span>
+        </button>
+
+        <button class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+            <polyline points="16 6 12 2 8 6" />
+            <line x1="12" x2="12" y1="2" y2="15" />
+          </svg>
+          Compartilhar
+        </button>
+      </div>
+    </div> </header>
+
+  <div class="max-w-none text-[#2a2a2a] leading-[1.8] space-y-8 text-xl font-light" id="article-body">
+    <p class="drop-cap">
+      {{post?.content}}
+    </p>
+  </div>
 </div>

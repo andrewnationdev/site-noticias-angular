@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './post-viewer.css',
 })
 export class PostViewer {
-  //@Input() id?:string;//
+  @Input() id?: string;//
 
   private route = inject(ActivatedRoute);
 
@@ -44,28 +44,35 @@ export class PostViewer {
 
   post = this.articles[Number(this.route.snapshot.paramMap.get('id')) - 1];
 
-  isInFavorites(){
+  isInFavorites(id: number) {
+    const storage = localStorage.getItem("favs");
+    const data: any[] = JSON.parse(storage!);
+
+    if (data.length > 0) {
+      return data.some(id => id == this.post?.id);
+    }
+
     return false;
   }
 
   handleAddToFavorites(curr_post: any) {
-    const id = curr_post?.id || this.id || this.route.snapshot.paramMap.get('id');
-
-    if (!id) return;
+    if (!curr_post) return;
 
     try {
       const storage = localStorage.getItem("favs");
-      const favs: string[] = storage ? JSON.parse(storage) : [];
+      let favs: any[] = storage ? JSON.parse(storage) : [];
 
-      if (!favs.includes(id.toString())) {
-        favs.push(id.toString());
+      const exists = favs.some(item => item.id === curr_post.id);
+
+      if (!exists) {
+        favs.push(curr_post);
         localStorage.setItem("favs", JSON.stringify(favs));
-        window.alert(`Post ${id} favoritado.`);
+        window.alert("Artigo salvo nos favoritos!");
       } else {
-        window.alert("Já favoritado.");
+        window.alert("Este artigo já está salvo.");
       }
     } catch (err) {
-      localStorage.setItem("favs", JSON.stringify([]));
+      localStorage.setItem("favs", JSON.stringify([curr_post]));
     }
   }
 }

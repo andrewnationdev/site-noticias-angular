@@ -10,8 +10,7 @@ import {PostSummary} from "../post-summary/post-summary"
 })
 
 export class FavoritesViewer {
-  favorites = [
-  ];
+  favorites: any[] = [];
 
   /*
   
@@ -47,10 +46,10 @@ export class FavoritesViewer {
   getFavorites = () => {
       const storage = localStorage.getItem("favs");
 
-      const data: any[] = JSON.parse(storage);
+      const data: any[] = JSON.parse(storage!);
 
       if(data.length > 0){
-        favorites = data;
+        this.favorites = data;
       }
   }
 }
