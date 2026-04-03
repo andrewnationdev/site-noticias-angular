@@ -44,22 +44,28 @@ export class PostViewer {
 
   post = this.articles[Number(this.route.snapshot.paramMap.get('id')) - 1];
 
-  handleAddToFavorite(curr_post:any) {
-    const id = this.route.snapshot.paramMap.get('id');
+  isInFavorites(){
+    return false;
+  }
+
+  handleAddToFavorites(curr_post: any) {
+    const id = curr_post?.id || this.id || this.route.snapshot.paramMap.get('id');
+
+    if (!id) return;
 
     try {
-      let data = localStorage.getItem("favs");
+      const storage = localStorage.getItem("favs");
+      const favs: string[] = storage ? JSON.parse(storage) : [];
 
-      window.alert(id);
-
-      console.log(curr_post);
-
-      if (data) {
-        window.alert("Data loaded");
+      if (!favs.includes(id.toString())) {
+        favs.push(id.toString());
+        localStorage.setItem("favs", JSON.stringify(favs));
+        window.alert(`Post ${id} favoritado.`);
+      } else {
+        window.alert("Já favoritado.");
       }
-      else localStorage.setItem("favs", JSON.stringify([]))
     } catch (err) {
-      
+      localStorage.setItem("favs", JSON.stringify([]));
     }
   }
 }

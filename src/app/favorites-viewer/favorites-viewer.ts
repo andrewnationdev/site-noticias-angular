@@ -11,6 +11,10 @@ import {PostSummary} from "../post-summary/post-summary"
 
 export class FavoritesViewer {
   favorites = [
+  ];
+
+  /*
+  
     {
         id: 1,
         title: "O Renascimento da Tipografia na Era Digital",
@@ -38,9 +42,15 @@ export class FavoritesViewer {
         author: "Dpto. de Linguística",
         category: "Educação"
     }
-  ];
+  */
 
-  saveToFavorites = (post:any) => {
-      
+  getFavorites = () => {
+      const storage = localStorage.getItem("favs");
+
+      const data: any[] = JSON.parse(storage);
+
+      if(data.length > 0){
+        favorites = data;
+      }
   }
 }
