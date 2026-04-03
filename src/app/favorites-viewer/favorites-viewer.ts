@@ -43,7 +43,14 @@ export class FavoritesViewer {
     }
   */
 
-  getFavorites = () => {
+    ngOnInit() {
+      const storage = localStorage.getItem("favs");
+      if (storage) {
+        this.favorites = JSON.parse(storage);
+      }
+    }
+
+  /*getFavorites = () => {
       const storage = localStorage.getItem("favs");
 
       const data: any[] = JSON.parse(storage!);
@@ -51,5 +58,5 @@ export class FavoritesViewer {
       if(data.length > 0){
         this.favorites = data;
       }
-  }
+  }*/
 }
