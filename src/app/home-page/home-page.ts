@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { PostSummary } from "../post-summary/post-summary";
 import { ApiService } from '../services/api';
+import { IPost } from '../../data/types/schema';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ import { ApiService } from '../services/api';
 export class HomePage implements OnInit {
   private apiService = inject(ApiService);
   
-  articles = signal<any[]>([]);
+  articles = signal<IPost[] | []>([]);
   isLoading = signal<boolean>(true);
 
   ngOnInit(): void {

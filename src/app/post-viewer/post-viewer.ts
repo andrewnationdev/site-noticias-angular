@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api';
+import { IPost } from '../../data/types/schema';
 
 @Component({
   selector: 'app-post-viewer',
@@ -13,7 +14,7 @@ export class PostViewer implements OnInit {
   private route = inject(ActivatedRoute);
   private apiService = inject(ApiService);
 
-  post = signal<any>(null);
+  post = signal<IPost | null>(null);
   isLoading = signal<boolean>(true);
 
   ngOnInit(): void {
@@ -36,18 +37,18 @@ export class PostViewer implements OnInit {
     const storage = localStorage.getItem("favs");
     if (!storage) return false;
     
-    const data: any[] = JSON.parse(storage);
+    const data: IPost[] = JSON.parse(storage);
     if (data.length > 0) {
       return data.some(item => item.id == id);
     }
     return false;
   }
 
-  handleAddToFavorites(curr_post: any) {
+  handleAddToFavorites(curr_post: IPost) {
     if (!curr_post) return;
     try {
       const storage = localStorage.getItem("favs");
-      let favs: any[] = storage ? JSON.parse(storage) : [];
+      let favs: IPost[] = storage ? JSON.parse(storage) : [];
       const exists = favs.some(item => item.id === curr_post.id);
 
       if (!exists) {

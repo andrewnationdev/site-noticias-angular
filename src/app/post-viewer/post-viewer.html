@@ -21,7 +21,7 @@
         </div>
 
         <div class="flex gap-6"> 
-          <button (click)="handleAddToFavorites(post())" 
+          <button (click)="handleAddToFavorites(post()!)" 
             id="btn-fav-article" 
             [class.text-amber-600]="isInFavorites(post()?.id!)"
             class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
