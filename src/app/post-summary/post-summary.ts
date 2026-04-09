@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router'
-import {Post} from '../../data/post';
+import {Post} from '../../data/types/post';
  
 @Component({
   selector: 'app-post-summary',
