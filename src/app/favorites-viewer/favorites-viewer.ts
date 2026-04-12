@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { PostSummary } from "../post-summary/post-summary"
 import { IPost } from '../../data/types/schema';
 import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   selector: 'app-favorites-viewer',

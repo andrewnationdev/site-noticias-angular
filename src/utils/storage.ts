@@ -1,1 +1,0 @@
-const getFromLocalStorage = (key:string) => {}

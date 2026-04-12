@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api';
 import { IPost } from '../../data/types/schema';
 import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss'
+import { NotFound } from '../not-found/not-found';
 
 @Component({
   selector: 'app-post-viewer',
   standalone: true,
-  imports: [],
+  imports: [NotFound],
   templateUrl: './post-viewer.html',
   styleUrl: './post-viewer.css',
 })
