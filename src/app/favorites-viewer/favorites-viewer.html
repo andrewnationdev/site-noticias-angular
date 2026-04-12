@@ -1,11 +1,14 @@
 <div class="max-w-3xl mx-auto px-6 py-16">
+    @if (toastProps.isVisible) {
+        <app-toast [props]="toastProps"></app-toast>
+    }
     <h1 class="text-4xl sm:text-5xl font-bold leading-[1.05] mb-10 tracking-tight">Artigos Favoritos</h1>
     <button (click)="deleteAllFavorites()"
-        class="text-xs font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
+        class="text-xs mb-4 font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
         DELETAR TODOS OS FAVORITOS
     </button>
-    <hr />
     <div class="mt-4">@for (favorite of favorites; track favorite?.id) {
+        <hr class="mt-4 mb-4"/>
         <app-post-summary [post]="favorite"></app-post-summary>
         <button (click)="deleteFavorite(favorite.id)"
             class="text-xs font-sans font-bold uppercase tracking-widest text-amber-800 opacity-50 hover:opacity-100 transition-opacity">
