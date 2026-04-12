@@ -34,7 +34,9 @@
             </span>
           </button>
 
-          <button class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
+          <button 
+          (click)="handleShare()"
+          class="hover:opacity-50 transition-opacity flex flex-col items-center gap-1 uppercase font-bold text-[9px]">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2">
               <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
@@ -48,8 +50,8 @@
     </header>
 
     <div class="max-w-none text-[#2a2a2a] leading-[1.8] space-y-8 text-xl font-light" id="article-body">
-      <p class="drop-cap">
-        {{post()?.content}}
+      <p id="post-body" class="drop-cap">
+        
       </p>
     </div>
   } @else {

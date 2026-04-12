@@ -2,6 +2,8 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api';
 import { IPost } from '../../data/types/schema';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   selector: 'app-post-viewer',
@@ -24,6 +26,13 @@ export class PostViewer implements OnInit {
         next: (res) => {
           this.post.set(res);
           this.isLoading.set(false);
+          
+          setTimeout(() => {
+            const postBody = document.getElementById("post-body");
+            if(postBody) {
+              postBody.innerHTML = res.content;
+            }
+          }, 0);
         },
         error: (err) => {
           console.error(err);
@@ -44,6 +53,19 @@ export class PostViewer implements OnInit {
     return false;
   }
 
+  handleShare(){
+    const url = window.location.href;
+
+    navigator.clipboard.writeText(url);
+
+    Swal.fire({
+      title: 'Link copiado para a área de transferência!',
+      icon: 'success',
+      timer: 2000,
+      showConfirmButton: false,
+    })
+  }
+
   handleAddToFavorites(curr_post: IPost) {
     if (!curr_post) return;
     try {
@@ -54,9 +76,19 @@ export class PostViewer implements OnInit {
       if (!exists) {
         favs.push(curr_post);
         localStorage.setItem("favs", JSON.stringify(favs));
-        window.alert("Artigo salvo nos favoritos!");
+        Swal.fire({
+          title: 'Salvo nos favoritos!',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        });
       } else {
-        window.alert("Este artigo já está salvo.");
+        Swal.fire({
+          title: 'Este artigo já está nos favoritos!',
+          icon: 'info',
+          timer: 2000,
+          showConfirmButton: false,
+        })
       }
     } catch (err) {
       localStorage.setItem("favs", JSON.stringify([curr_post]));

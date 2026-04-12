@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { PostSummary } from "../post-summary/post-summary"
-import { Toast } from '../toast/toast'
 import { IPost } from '../../data/types/schema';
-import { IToast } from '../../data/types/toast';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   selector: 'app-favorites-viewer',
-  imports: [PostSummary, Toast],
+  imports: [PostSummary],
   standalone: true,
   templateUrl: './favorites-viewer.html',
   styleUrl: './favorites-viewer.css',
@@ -14,12 +14,6 @@ import { IToast } from '../../data/types/toast';
 
 export class FavoritesViewer {
   favorites: IPost[] = [];
-
-  toastProps: IToast = {
-    isVisible: false,
-    text: "This is a message",
-    duration: 5000
-  }
 
   ngOnInit() {
     const storage = localStorage.getItem("favs");
@@ -29,18 +23,44 @@ export class FavoritesViewer {
   }
 
   deleteFavorite(id: number) {
-    this.favorites = this.favorites.filter(post => post.id !== id);
-    localStorage.setItem("favs", JSON.stringify(this.favorites));
-
-    this.toastProps = {
-      ...this.toastProps,
-      text: "Deletado dos favoritos!",
-      isVisible: true,
-    };
+    Swal.fire({
+      title: 'Tem certeza que deseja deletar este favorito?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, deletar',
+      cancelButtonText: 'Não, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.favorites = this.favorites.filter(post => post.id !== id);
+        localStorage.setItem("favs", JSON.stringify(this.favorites));
+        Swal.fire({
+          title: 'Favorito deletado!',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        })
+      }
+    })
   }
 
   deleteAllFavorites(){
-    this.favorites = [];
-    localStorage.setItem("favs", JSON.stringify([]));
+    Swal.fire({
+      title: 'Tem certeza que deseja deletar todos os favoritos?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, deletar',
+      cancelButtonText: 'Não, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.favorites = [];
+        localStorage.setItem("favs", JSON.stringify([]));
+        Swal.fire({
+          title: 'Todos os favoritos foram deletados!',
+          icon: 'success',
+          timer: 2000,
+          showConfirmButton: false,
+        })
+      }
+    })
   }
 }
